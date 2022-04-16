@@ -1,0 +1,142 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<style>
+  body{
+    background-color: black;
+  }
+  
+  /*  USER MANUAL -- NAVBAR*/
+  ul{
+    list-style-type: none;
+  }
+  .manual{
+    border-radius: 8px;
+    padding: 10px;
+    background-color: yellow;
+    color: black;
+    border: none;
+    font-weight: bolder;
+  }
+  .manual:hover{
+    background-color: #ff5757;
+  }
+  /* GAME HEADER */
+  .game__header--container{
+    position: relative;
+    margin-top: 200px;
+  }
+  .player__input{
+    width: 280px;
+    border-radius: 15px;
+    height: 45px;
+    text-align: center;
+  }
+  .input__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px
+  }
+  .play__button{
+    width: 280px;
+    border-radius: 15px;
+    height: 45px;
+    margin-top: 10px;
+    background-color: #ff5757;
+    color: white;
+    border: 3px solid hotpink;
+
+  }
+  .play__button:hover{
+    background-color: #fd0909;
+  }
+
+  /* MODIFYING COLOR AND ALIGNMENT OF INPUT PLACEHOLDER */
+  ::-webkit-input-placeholder{
+    text-align: center;
+
+  }
+
+
+  /* GAME LOGO */
+
+
+  /* hangman drawing  */
+  .hangman-drawing{
+    width: 100px;
+    height: 400px;
+    background-color: black;
+    position: absolute;
+    top: -80px;
+    left: -220px;
+  }
+ .person{
+   position: absolute;
+   top: 0px;
+   left:  72px;
+   height: 400px;
+ }
+ /* #ff5757 */
+</style>
+<nav>
+   <a href="{{ url_for('manual') }}"><button class="manual">USER MANUAL</button></a>
+</nav>
+
+<div class="game__header--container">
+  <img class="logo" src="/static/assets/hangman_logo_cropped.png" alt="">
+  <form action="{{ url_for('new_game') }}">
+    <div class="input__container">
+      <input class="player__input" name="player" required="required" placeholder="Enter your name">
+      <button class="play__button" type="submit">Play!</button>
+    </div>
+  </form>
+
+   <div class="panel panel-default vspace">
+    <div class="panel-heading">Top 10</div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Player</th>
+          <th>Word</th>
+          <th>Errors</th>
+          <th>Points</th>
+      <tbody>
+        {% for game in games %}
+          <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ game.player }}</td>
+            <td class="text-success">{{ game.current }}</td>
+            <td class="text-danger spaced">{{ game.errors }}</td>
+            <td>{{ game.points }}</td>
+        {% endfor %}
+    </table>
+
+
+
+    <div class="hangman-drawing">
+      <img class="structure" src="/static/assets/hangman-structure.png" alt="">
+      <img id="hangman" class="person" src="/static/assets/hangman-draft.png" alt="">
+
+    </div>
+  </div>
+
+  <script>
+    const hangman = document.getElementById('hangman')
+    hangman.animate(
+      [{top: '-10px', offset:0.6},{top:'-9px'},{top:'-8px'},{top:'-7px'},{top:'-6px'},{top:'-5px'},{top:'-4px'},{top:'-3px'},{top:'-2px'},{top:'-1px'},{top:'0px'},{top:'1px'},{top:'2px'},{top:'3px'},{top:'4px'},{top:'5px'},{top:'6px'}
+    ], 
+      {
+        duration: 1200,
+        iterations: Infinity,
+        easing: 'ease-in-out',
+        direction: 'reverse'
+
+      }
+    )
+  </script>
+
+{% endblock %}

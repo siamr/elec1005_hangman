@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        body{
+            background-color: black;
+        }
+        nav{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .wrapper{
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .manual{
+            border: 2px solid white;
+            width: 600px;
+            height: 600px;
+            color: white;
+            overflow-y: scroll;
+        }
+        .image-container{
+            display: flex;
+            justify-content: center;
+        }
+        .text-container{
+            padding: 20px;
+        }
+        .button{
+            margin-top: 80px;
+            border-radius: 8px;
+            padding: 10px;
+            background-color: yellow;
+            color: black;
+            border: none;
+            font-weight: bolder;
+            cursor: pointer;
+            font-size: 25px;
+
+        }
+        .button:hover{
+            background-color: #ff5757;
+        }
+    </style>
+
+<nav>
+    <a href="{{ url_for('home') }}"><button class="button">Click here to go back to game</button></a>
+</nav>
+<div class="wrapper">
+    <div class="manual">
+        <h1 style="text-align: center;">HOW TO PLAY</h1>
+        <div class="image-container">
+            <img src="/static/assets/hangman_logo_cropped.png" alt="">
+
+        </div>
+        <div class="text-container">
+            <h2>Objective</h2>
+            <p>The overall objective of the Hangman Game is to correctly guess the word randomly picked by the program, and avoid getting ‘hanged’ (making 6 wrong guesses). </p>
+            <h2>Introduction</h2>
+            <p>1. Double click on the executable file, titled ‘Hangman Game.’<br/>2. The game will open on the Home Page, and prompt you to enter your name.<br/>3.Click ‘Play!’ to commence game-play.  </p>
+            <h2>Game-play</h2>
+            <p>The game opens with the gallows drawn, and a row of dashed lines. The number of dashed lines corresponds to the number of letters in the word.<br/>1. Guess a letter that you believe to be in the given word by typing it in the blank box, then pressing ‘Try letter.’ <br/>a. If the letter guessed is in the word, it will appear in its correct place in the word. You can then continue to guess other letters.
+            <br>b. If the letter guessed is not in the word, a body part will be added to the figure. Points will also be deduced from your final score. <br>2. Repeat Step 1. <br>3. The round ends whenever the user correctly guesses the word, or makes 6 incorrect guesses - whichever occurs first. <br>4. When the round ends, a pop up message will appear depending on whether you guessed the word (“You won!”) or didn’t guess the word (“You lost :-(“). <br>5. You will then be given the option to play again, or return to the home page where you can view your score
+            </p>
+            <h2>Things to keep in mind!</h2>
+            <p>Take note that not all incorrect letter guesses are afforded the same weight! Whilst every incorrect consonant guess will only deduct 1 point from your total score, an incorrect vowel guess will deduct 5 points from your score!
+            </p>
+        </div>
+
+
+    </div>
+
+</div>
+
+    
+</body>
+</html>
